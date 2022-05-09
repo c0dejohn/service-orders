@@ -1,12 +1,14 @@
 import { Router } from 'express'
-const cartRouter = Router()
-import Customer from '../controllers/customer.controller'
+const customerRouter = Router()
+import Customer from '../dal/dao/customer'
 
 const customer = new Customer()
 
-cartRouter.get('/listar', async (req, res) => {
+customerRouter.get('/listar', async (req, res) => {
     try {
-        const result = await customer.listarcustomer()
+        const { id } = req.body
+        const finalId = parseInt(id)
+        const result = await customer.find(finalId)
         result === undefined
             ? res.send({ error: 'no hay customers cargados' })
             : res.send(result)
@@ -15,31 +17,31 @@ cartRouter.get('/listar', async (req, res) => {
     }
 })
 
-cartRouter.get('/listar/:id?', async (req, res) => {
-    try {
-        const id = req.params.id ?? '0'
-        const result = await customer.mostrarcustomer(id)
+// cartRouter.get('/listar/:id?', async (req, res) => {
+//     try {
+//         const id = req.params.id ?? '0'
+//         const result = await customer.mostrarcustomer(id)
 
-        result !== undefined
-            ? res.send(result)
-            : res.send({ error: 'customer no encontrado' })
-    } catch (error) {
-        res.send(error)
-    }
-})
+//         result !== undefined
+//             ? res.send(result)
+//             : res.send({ error: 'customer no encontrado' })
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
 
-cartRouter.post('/agregar', async (req: any, res: any) => {
-    try {
-        const { id, title, quantity, price } = await req.body
-        const result = await customer.agregarcustomer(id, title, quantity, price)
-        result !== undefined ? res.status(201).send(result) : res.send(null)
-    } catch (error) {
-        res.send(error)
-    }
-})
+// cartRouter.post('/agregar', async (req: any, res: any) => {
+//     try {
+//         const { id, title, quantity, price } = await req.body
+//         const result = await customer.agregarcustomer(id, title, quantity, price)
+//         result !== undefined ? res.status(201).send(result) : res.send(null)
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
 
-cartRouter.delete(`/borrar/:id`, (req: any, res: any) => {
-    const id = req.params.id
-    res.send(customer.eliminarcustomer(id))
-})
-export default cartRouter
+// cartRouter.delete(`/borrar/:id`, (req: any, res: any) => {
+//     const id = req.params.id
+//     res.send(customer.eliminarcustomer(id))
+// })
+export default customerRouter

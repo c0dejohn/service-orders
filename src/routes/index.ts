@@ -1,10 +1,10 @@
 import { Router } from "express";
-const cartRouter = Router();
-// import Carrito from "../controller/carrito";
+const customerRouter = Router();
+import Customer from "../dal/dao/customer";
 
-// const carrito = new Carrito();
+const customer = new Customer();
 
-// cartRouter.get("/:id/productos", carrito.getById);
+customerRouter.get("/", customer);
 // cartRouter.post("/", carrito.addProduct);
 // cartRouter.put(`/:id`, carrito.update);
 // cartRouter.delete(`/:id`, carrito.destroy);
