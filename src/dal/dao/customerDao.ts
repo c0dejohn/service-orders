@@ -16,9 +16,9 @@ export default class CustomerDao {
         }
 
     }
-    async create(name, email) {
+    async create(name: string, email: string, phone: string, id_card?: string) {
         try {
-            return await customerRepository.save({ name, email });
+            return await customerRepository.save({ name, email, phone, id_card });
         } catch (error) {
             console.error(error);
             return msg
@@ -34,9 +34,9 @@ export default class CustomerDao {
         }
 
     }
-    async update(id, name, email, id_card?) {
+    async update(id: string, name: string, email: string, phone?: string, id_card?: string) {
         try {
-            return await customerRepository.update(id, { name, email, id_card });
+            return await customerRepository.update(id, { name, email, phone, id_card });
         } catch (error) {
             console.error(error);
             return msg

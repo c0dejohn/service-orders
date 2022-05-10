@@ -42,8 +42,8 @@ class OrderController {
         try {
             const order = new Order();
             const { id } = req.params;
-            const { name, email } = await req.body;
-            const result = await order.update(id, name, email);
+            const { customer_name, service, price, quantity, description, tools } = await req.body;
+            const result = await order.update(id, customer_name, service, price, quantity, description, tools);
             return res.status(200).json(result.affected > 0 ? { msg: "Updated" } : { msg: "Not Found" });
         } catch (error) {
             res.send(error);

@@ -17,10 +17,10 @@ export default class OrderDao {
         }
 
     }
-    async create(customer_name, service, price, quantity, description, tools) {
+    async create(customer_name, service, price, quantity, description, tools, customerId) {
         try {
             const technician = await technicianRepository.query(`SELECT id, name FROM technician order by RANDOM() LIMIT 1`)
-            return orderRepository.save({ customer_name, service, price, quantity, description, tools, technician: technician[0].id, technician_name: technician[0].name });
+            return orderRepository.save({ customer_name, service, price, quantity, description, tools, technician: technician[0].id, technician_name: technician[0].name, customerId });
         } catch (error) {
             console.error(error);
             return msg;

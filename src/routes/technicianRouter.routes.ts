@@ -9,5 +9,6 @@ technicianRouter.post('/', technician.createTechnician)
 technicianRouter.put('/:id', technician.update)
 technicianRouter.delete('/:id', technician.destroy)
 technicianRouter.get('/:id?', technician.getById)
+technicianRouter.get('/order-list/:name', technician.getOrder)
 
 export default technicianRouter

@@ -15,8 +15,8 @@ class Order {
     async create(input) {
         try {
             const data = new OrderDAO();
-            const { customer_name, service, price, quantity, description, tools } = input;
-            return data.create(customer_name, service, price, quantity, description, tools);
+            const { customer_name, service, price, quantity, description, tools, customerId } = input;
+            return data.create(customer_name, service, price, quantity, description, tools, customerId);
         } catch (err) {
 
             console.error(err);

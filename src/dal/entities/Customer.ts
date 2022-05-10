@@ -17,13 +17,14 @@ export class Customer extends BaseEntity {
     name: string;
     @Column()
     email: string;
+    @Column({ nullable: true })
+    phone: string;
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()
     updated_at: Date;
     @Column({ nullable: true })
     id_card: string;
-
 
 
     // The first FK column.

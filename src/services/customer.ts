@@ -12,10 +12,11 @@ class Customer {
         }
     }
 
-    async create(name, email) {
+    async create(input) {
         try {
             const data = new CustomerDAO();
-            return data.create(name, email);
+            const { name, email, phone, id_card } = input;
+            return data.create(name, email, phone, id_card);
         } catch (err) {
 
             console.error(err);
@@ -32,10 +33,10 @@ class Customer {
             return err;
         }
     }
-    async update(id, name, email) {
+    async update(id, name, email, phone?, id_card?) {
         try {
             const data = new CustomerDAO();
-            return data.update(id, name, email);
+            return data.update(id, name, email, phone, id_card);
         } catch (err) {
             console.error(err);
             return err;

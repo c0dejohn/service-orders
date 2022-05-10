@@ -30,8 +30,7 @@ class CustomerController {
     createCustomer = async (req: Request, res: Response) => {
         try {
             const customer = new Customer();
-            const { name, email } = await req.body;
-            const result = await customer.create(name, email);
+            const result = await customer.create(req.body.input);
             return res.status(201).send(result);
         } catch (error) {
             res.send(error);
@@ -42,8 +41,8 @@ class CustomerController {
         try {
             const customer = new Customer();
             const { id } = req.params;
-            const { name, email } = await req.body;
-            const result = await customer.update(id, name, email);
+            const { name, email, phone, id_card } = await req.body;
+            const result = await customer.update(id, name, email, phone, id_card);
             return res.status(200).json(result.affected > 0 ? { msg: "Updated" } : { msg: "Not Found" });
         } catch (error) {
             res.send(error);

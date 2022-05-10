@@ -13,7 +13,7 @@ class Technician {
         }
     }
 
-    async create(name, email, phone?) {
+    async create(name: string, email: string, phone?: string) {
         try {
             const data = new TechnicianDAO();
             return data.create(name, email, phone);
@@ -23,7 +23,7 @@ class Technician {
             return err;
         }
     }
-    async getById(id) {
+    async getById(id: number) {
         try {
             const data = new TechnicianDAO();
             console.log(data.getById(id));
@@ -33,7 +33,7 @@ class Technician {
             return err;
         }
     }
-    async update(id, name, email, phone) {
+    async update(id: number, name: string, email: string, phone: string) {
         try {
             const data = new TechnicianDAO();
             return data.update(id, name, email, phone);
@@ -47,6 +47,15 @@ class Technician {
         try {
             const data = new TechnicianDAO();
             return data.destroy(id);
+        } catch (err) {
+            console.error(err);
+            return err;
+        }
+    }
+    async orderList(name) {
+        try {
+            const data = new TechnicianDAO();
+            return data.getOrders(name);
         } catch (err) {
             console.error(err);
             return err;

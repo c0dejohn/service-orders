@@ -3,9 +3,12 @@
  * 1. Create a metethod to list orders by technician
  */
 import { Technician } from '../entities/Technician';
+import { Order } from '../entities/Order';
 import { AppDataSource } from "../../db";
 
+
 const technicianRepository = AppDataSource.getRepository(Technician);
+const orderRepository = AppDataSource.getRepository(Order);
 const msg = { msg: 'Something goes wrong' }
 export default class TechnicianDao {
 
@@ -55,4 +58,14 @@ export default class TechnicianDao {
         }
 
     }
+    async getOrders(name) {
+        try {
+            return await orderRepository.findBy({ technician_name: name });
+
+        } catch (error) {
+            console.error(error);
+            return msg
+        }
+    }
+
 }

@@ -9,7 +9,6 @@ import {
 } from 'typeorm';
 
 import { Customer } from './Customer';
-import { Service } from './Service';
 import { Technician } from './Technician';
 
 @Entity()
@@ -28,14 +27,16 @@ export class Order extends BaseEntity {
     quantity: number;
     @Column({ nullable: true })
     description: string;
-    @Column({ nullable: true })
-    tools: string;
+    @Column('enum', { enum: [{ basic: ['martillo', 'llaves bristol', 'destornilladores'], electrical: ['atornillador eléctrico', 'taladro percutor'] }] })
+    tools: Array<string>;
     @Column({ nullable: false })
     customer_name: string;
-    @Column({ enum: ['mantenimiento', 'instalación'] })
+    @Column('enum', { enum: ['mantenimiento', 'instalación'] })
     service: string;
     @Column({ nullable: true })
     technician_name: string;
+    @Column()
+    customerId: string;
 
 
     // The first FK column.
@@ -55,11 +56,4 @@ export class Order extends BaseEntity {
     )
     technician: Technician;
 
-    @ManyToOne(
-        _ => Service,
-        {
-            nullable: true
-        }
-    )
-    serivce: Service;
 }

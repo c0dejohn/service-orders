@@ -19,7 +19,7 @@ class TechnicianController {
         try {
 
             const technician = new Technician();
-            const result = await technician.getById(req.params.id);
+            const result = await technician.getById(parseInt(req.params.id));
             res.send(result)
 
         } catch (error) {
@@ -43,7 +43,7 @@ class TechnicianController {
             const technician = new Technician();
             const { id } = req.params;
             const { name, email, phone } = await req.body;
-            const result = await technician.update(id, name, email, phone);
+            const result = await technician.update(+id, name, email, phone);
             return res.status(200).json(result.affected > 0 ? { msg: "Updated" } : { msg: "Not Found" });
         } catch (error) {
             res.send(error);
@@ -54,11 +54,22 @@ class TechnicianController {
         try {
             const technician = new Technician();
             const { id } = req.params;
-            const result = await technician.destroy(id);
+            const result = await technician.destroy(+id);
             return res.status(201).json(result.affected > 0 ? { msg: 'Deleted' } : { msg: 'Not Found' });
         } catch (error) {
             res.send(error);
         }
+    }
+    getOrder = async (req: Request, res: Response) => {
+        try {
+            const technician = new Technician();
+            const { name } = req.params;
+            const result = await technician.orderList(name);
+            return res.status(200).json(result);
+        } catch (error) {
+            res.send(error);
+        }
+
     }
 
 
