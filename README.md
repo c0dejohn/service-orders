@@ -1,13 +1,5 @@
 # service-orders-api
 
-
-### Scaffolding
-
-![n-layer architecture](static/capas.png)
-
-### Schemas
-![E-R diagram](static/ER.png)
-
 ### Requirements
 
 - Nodejs v12.13.x
@@ -42,6 +34,13 @@
 
 [Postman📖](https://documenter.getpostman.com/view/8141743/UyxeqUSD)
 
+
+### Scaffolding
+
+![n-layer architecture](static/capas.png)
+
+### Schemas
+![E-R diagram](static/ER.png)
 ### Contributors
 
 - Edwin Manyoma
