@@ -1,13 +1,5 @@
 # service-orders-api
 
-
-### Scaffolding
-
-![n-layer architecture](static/capas.png)
-
-### Schemas
-![E-R diagram](static/ER.png)
-
 ### Requirements
 
 - Nodejs v12.13.x
@@ -37,6 +29,13 @@
   ```
   npm run dev
   ```
+
+### Scaffolding
+
+![n-layer architecture](static/capas.png)
+
+### Schemas
+![E-R diagram](static/ER.png)
 
 ### Postman Collection
 
