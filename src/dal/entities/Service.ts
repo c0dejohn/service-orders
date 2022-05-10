@@ -1,7 +1,6 @@
 import {
     Column,
     Entity,
-    ManyToOne,
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
@@ -13,8 +12,8 @@ import {
 
 @Entity()
 export class Service extends BaseEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column({ nullable: true })
     description: string;
@@ -31,6 +30,4 @@ export class Service extends BaseEntity {
     @Column()
     is_test_ok: boolean;
 
-
-    // The first 
 }

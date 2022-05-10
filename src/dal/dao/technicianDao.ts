@@ -1,24 +1,26 @@
-import { Customer } from '../entities/Customer';
-
+/**
+ * TODO:
+ * 1. Create a metethod to list orders by technician
+ */
+import { Technician } from '../entities/Technician';
 import { AppDataSource } from "../../db";
 
-
-const customerRepository = AppDataSource.getRepository(Customer);
+const technicianRepository = AppDataSource.getRepository(Technician);
 const msg = { msg: 'Something goes wrong' }
-export default class CustomerDao {
+export default class TechnicianDao {
 
     async getAll() {
         try {
-            return await customerRepository.find()
+            return await technicianRepository.find()
         } catch (error) {
             console.error(error);
             return msg;
         }
 
     }
-    async create(name, email) {
+    async create(name, email, phone?) {
         try {
-            return await customerRepository.save({ name, email });
+            return await technicianRepository.save({ name, email, phone });
         } catch (error) {
             console.error(error);
             return msg
@@ -27,16 +29,16 @@ export default class CustomerDao {
     }
     async getById(id) {
         try {
-            return await customerRepository.findBy({ id: id });
+            return await technicianRepository.findBy({ id: id });
         } catch (error) {
             console.error(error);
             return msg
         }
 
     }
-    async update(id, name, email, id_card?) {
+    async update(id, name, email, phone?) {
         try {
-            return await customerRepository.update(id, { name, email, id_card });
+            return await technicianRepository.update(id, { name, email, phone });
         } catch (error) {
             console.error(error);
             return msg
@@ -45,7 +47,7 @@ export default class CustomerDao {
     }
     async destroy(id) {
         try {
-            return await customerRepository.delete(id);
+            return await technicianRepository.delete(id);
         } catch (error) {
             console.error(error);
             return msg

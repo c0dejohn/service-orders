@@ -21,7 +21,7 @@ export class Customer extends BaseEntity {
     created_at: Date;
     @UpdateDateColumn()
     updated_at: Date;
-    @Column()
+    @Column({ nullable: true })
     id_card: string;
 
 

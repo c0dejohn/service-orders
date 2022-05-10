@@ -2,8 +2,9 @@ import * as express from "express";
 import * as morgan from "morgan";
 import * as cors from "cors";
 import customerRouter from "./routes/customerRouter.routes";
-// import cartRouter from "./router/carrito.routes";
-// import { createConnection } from "typeorm";
+import orderRouter from "./routes/orders.routes";
+import technicianRouter from "./routes/technicianRouter.routes";
+
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -15,6 +16,8 @@ app.get('/', (_req, res) => {
     res.json({ status: "ok" })
 })
 
-app.use('/Customer', customerRouter)
+app.use('/api/customer', customerRouter)
+app.use('/api/order', orderRouter)
+app.use('/api/technician', technicianRouter)
 
 export default app;

@@ -14,13 +14,13 @@ import { Technician } from './Technician';
 
 @Entity()
 export class Order extends BaseEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn({ nullable: true, default: null })
     updated_at: Date;
-    @Column({ 'enum': ['pending', 'in_progress', 'done', 'canceled'] })
+    @Column({ 'enum': ['pending', 'in_progress', 'done', 'canceled'], default: 'pending' })
     status: string;
     @Column()
     price: number;
@@ -28,12 +28,14 @@ export class Order extends BaseEntity {
     quantity: number;
     @Column({ nullable: true })
     description: string;
-    @Column('simple-array', { nullable: true })
-    tools: string[];
+    @Column({ nullable: true })
+    tools: string;
     @Column({ nullable: false })
     customer_name: string;
     @Column({ enum: ['mantenimiento', 'instalación'] })
     service: string;
+    @Column({ nullable: true })
+    technician_name: string;
 
 
     // The first FK column.
@@ -48,7 +50,7 @@ export class Order extends BaseEntity {
     @ManyToOne(
         _ => Technician,
         {
-            nullable: true
+            nullable: false
         }
     )
     technician: Technician;

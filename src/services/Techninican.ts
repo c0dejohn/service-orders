@@ -1,9 +1,10 @@
-import OrderDAO from "../dal/dao/orderDao";
-class Order {
+import TechnicianDAO from "../dal/dao/technicianDao";
 
-    async orderList() {
+class Technician {
+
+    async technicianList() {
         try {
-            const data = new OrderDAO();
+            const data = new TechnicianDAO();
 
             return data.getAll();
 
@@ -12,11 +13,10 @@ class Order {
         }
     }
 
-    async create(input) {
+    async create(name, email, phone?) {
         try {
-            const data = new OrderDAO();
-            const { customer_name, service, price, quantity, description, tools } = input;
-            return data.create(customer_name, service, price, quantity, description, tools);
+            const data = new TechnicianDAO();
+            return data.create(name, email, phone);
         } catch (err) {
 
             console.error(err);
@@ -25,7 +25,7 @@ class Order {
     }
     async getById(id) {
         try {
-            const data = new OrderDAO();
+            const data = new TechnicianDAO();
             console.log(data.getById(id));
             return data.getById(id);
         } catch (err) {
@@ -33,10 +33,10 @@ class Order {
             return err;
         }
     }
-    async update(id, customer_name?, service?, price?, quantity?, description?, tools?) {
+    async update(id, name, email, phone) {
         try {
-            const data = new OrderDAO();
-            return data.update(id, customer_name, service, price, quantity, description, tools);
+            const data = new TechnicianDAO();
+            return data.update(id, name, email, phone);
         } catch (err) {
             console.error(err);
             return err;
@@ -45,7 +45,7 @@ class Order {
 
     async destroy(id) {
         try {
-            const data = new OrderDAO();
+            const data = new TechnicianDAO();
             return data.destroy(id);
         } catch (err) {
             console.error(err);
@@ -54,4 +54,4 @@ class Order {
     }
 
 }
-export default Order;
+export default Technician;

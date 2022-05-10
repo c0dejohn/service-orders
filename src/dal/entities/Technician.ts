@@ -7,12 +7,10 @@ import {
     BaseEntity
 } from 'typeorm';
 
-
-
 @Entity()
 export class Technician extends BaseEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     name: string;
@@ -22,11 +20,8 @@ export class Technician extends BaseEntity {
     created_at: Date;
     @UpdateDateColumn()
     updated_at: Date;
-    @Column()
-    order_id: string;
-    @Column()
-    id_card: string;
-
-
-    // The first 
+    @Column('json', { nullable: true })
+    orders_id: string[];
+    @Column({ nullable: true })
+    phone: string
 }
