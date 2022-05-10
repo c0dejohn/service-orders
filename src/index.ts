@@ -9,7 +9,7 @@ async function main() {
         AppDataSource.initialize()
         console.log("Database connected")
         app.listen(PORT, () => {
-            console.log(`server listening on port ${PORT}`);
+            console.log(`server listening on port ${PORT ?? 8080}`);
         });
     } catch (error) {
         console.log(error)
