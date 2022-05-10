@@ -1,21 +1,14 @@
 import { Router } from 'express'
 const customerRouter = Router()
-import Customer from '../dal/dao/customer'
+import CustomerController from '../controllers/customer.controller'
 
-const customer = new Customer()
+const customer = new CustomerController()
 
-customerRouter.get('/listar', async (req, res) => {
-    try {
-        const { id } = req.body
-        const finalId = parseInt(id)
-        const result = await customer.find(finalId)
-        result === undefined
-            ? res.send({ error: 'no hay customers cargados' })
-            : res.send(result)
-    } catch (error) {
-        res.send(error)
-    }
-})
+customerRouter.get('/', customer.list)
+customerRouter.post('/', customer.createCustomer)
+customerRouter.put('/:id', customer.update)
+customerRouter.delete('/:id', customer.destroy)
+customerRouter.get('/:id?', customer.getById)
 
 // cartRouter.get('/listar/:id?', async (req, res) => {
 //     try {

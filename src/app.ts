@@ -1,16 +1,15 @@
 import * as express from "express";
-import customerRouter from "./routes/customer.routes";
+import * as morgan from "morgan";
+import * as cors from "cors";
+import customerRouter from "./routes/customerRouter.routes";
 // import cartRouter from "./router/carrito.routes";
-import 'dotenv/config';
 // import { createConnection } from "typeorm";
 const app = express();
 
-
-
-// import { logger } from "./util/logger";
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(morgan("dev"));
+app.use(cors());
 
 app.get('/', (_req, res) => {
     res.json({ status: "ok" })
@@ -18,9 +17,4 @@ app.get('/', (_req, res) => {
 
 app.use('/Customer', customerRouter)
 
-
-const { PORT } = process.env;
-
-app.listen(PORT, () => {
-    console.log(`server listening on port ${PORT}`);
-});
+export default app;
