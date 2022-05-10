@@ -41,6 +41,9 @@
 
 ### Schemas
 ![E-R diagram](static/ER.png)
+
+***public link***
+- https://infinite-chamber-01036.herokuapp.com/
 ### Contributors
 
 - Edwin Manyoma
